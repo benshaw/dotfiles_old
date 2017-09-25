@@ -1,6 +1,11 @@
 # dotfiles
 
+Dotfiles for my dev env
+
 #Things I Use
-- Z[https://github.com/rupa/z]
-- Oh My Zsh[https://github.com/robbyrussell/oh-my-zsh] 
-- Sublime[https://www.sublimetext.com/]
+- Linux (ubuntu at the moment)
+- I3 
+- I3Status
+- Tmux
+- Fish Shell
+
