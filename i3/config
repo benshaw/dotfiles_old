@@ -42,6 +42,9 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
+# Touchpad toggle On/Off on mod+m
+bindsym $mod+t exec synclient TouchpadOff=$(( $(synclient -l | grep 'TouchpadOff' | awk -F= '{print $2}') ^1 ))
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -219,5 +222,9 @@ bar {
   status_command i3status -c ~/.i3status.conf
 }
 
-exec xmodmap ~/.Xmodmap
+#exec xmodmap ~/.Xmodmap
+exec setxkbmap -option "caps:swapescape"
+exec setxkbmap -option "shift:both_capslock"
+
 exec syndaemon -i 0.5 -d 
+exec xfce4-power-manager 

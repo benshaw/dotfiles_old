@@ -8,6 +8,7 @@ set -x LANG en_US.UTF-8
 # Paths
 test -d /usr/local/sbin          ; and set PATH /usr/local/sbin $PATH
 test -d /usr/local/bin           ; and set PATH /usr/local/bin $PATH
+test -d ~/.local/bin             ; and set PATH ~/.local/bin $PATH
 
 # Navigation
 function ..    ; cd .. ; end
