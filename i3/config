@@ -42,20 +42,42 @@ bindsym $mod+d exec dmenu_run
 # installed.
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
-# Touchpad toggle On/Off on mod+m
+# Touchpad toggle On/Off 
 bindsym $mod+t exec synclient TouchpadOff=$(( $(synclient -l | grep 'TouchpadOff' | awk -F= '{print $2}') ^1 ))
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Touchpad controls
+bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+#ibindsym $mod+j focus left
+#bindsym $mod+k focus down
+#bindsym $mod+l focus up
+#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
+
+# Move to display
+#bindsym $mod+j move workspace to output DP1
+#bindsym $mod+; move workspace to output eDP1
 
 # move focused window
 bindsym $mod+Shift+j move left
@@ -120,16 +142,16 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+comma exec amixer set Master -q 5%-
-bindsym $mod+period exec amixer set Master -q 5%+
-bindsym $mod+m exec amixer set Master +1 toggle
+#bindsym XF86AudioPlay exec playerctl play-pause
+#bindsym XF86AudioNext exec playerctl next
+#bindsym XF86AudioPrev exec playerctl previous
+#bindsym $mod+comma exec amixer set Master -q 5%-
+#bindsym $mod+period exec amixer set Master -q 5%+
+#bindsym $mod+m exec amixer set Master +1 toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -140,17 +162,20 @@ bindsym $mod+Shift+r restart
 #lock screen 
 #bindsym $mod+Shift+b exec i3lock
 # Screenshot
-bindsym Print exec xfce4-screenshooter
+#bindsym Print exec xfce4-screenshooter
+bindsym $mod+Shift+p exec "scrot '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures'"
+
 
 # Power management
 set $Locker i3lock #~/.i3/locker.sh
 #set $Docker ~/.i3/docker.sh
 
-set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (d) dock
+set $mode_system System (l) lock, (h) hibernate, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown, (d) dock
 mode "$mode_system" {
     bindsym l exec --no-startup-id $Locker, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode default
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
     #bindsym d exec --no-startup-id $Docker, mode "default"
@@ -160,7 +185,7 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+p mode "$mode_system"
+bindsym $mod+x mode "$mode_system"
 
 # Session management
 set $mode_session Session (s) save, (r) restore
