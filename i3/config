@@ -43,7 +43,8 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # Touchpad toggle On/Off 
-bindsym $mod+t exec synclient TouchpadOff=$(( $(synclient -l | grep 'TouchpadOff' | awk -F= '{print $2}') ^1 ))
+#bindsym $mod+t exec synclient TouchpadOff=$(( $(synclient -l | grep 'TouchpadOff' | awk -F= '{print $2}') ^1 ))
+bindsym $mod+t exec /home/ben/.config/i3/toggletouchpad.sh
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -55,7 +56,8 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
+bindsym XF86TouchpadToggle exec /home/ben/.config/i3/toggletouchpad.sh
+# /some/path/toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
