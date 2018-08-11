@@ -1,0 +1,6 @@
+#!/bin/bash
+setxkbmap -option "caps:swapescape"
+setxkbmap -option "shift:both_capslock"
+
+
+

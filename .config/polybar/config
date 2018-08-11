@@ -56,8 +56,8 @@ font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-2 = siji:pixelsize=20;1
 
 modules-left = bspwm i3
-modules-center = mpd
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-center = music volume
+modules-right = filesystem redshift pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -327,6 +327,28 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/music]
+type = custom/script
+interval = 2
+
+label = %output:0:45:...%
+exec = ~/.config/polybar/custom/mpris.sh
+
+[module/redshift]
+type = custom/script
+interval = 5
+
+exec = ~/.config/polybar/custom/redshift.sh
+
+[module/updates]
+type = custom/script
+interval = 60
+format = <label>
+format-underline = ${colors.alert}
+label = "%output:0:30%"
+exec = .config/polybar/custom/updates.sh
+exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 
 [module/battery]
 type = internal/battery
