@@ -68,6 +68,12 @@ bindsym XF86AudioPause exec playerctl pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
+bindsym $mod+p exec playerctl play
+bindsym $mod+Shift+p exec playerctl pause
+bindsym $mod+Shift+o exec playerctl next
+bindsym $mod+Shift+i exec playerctl previous
+
+
 # change focus
 #ibindsym $mod+j focus left
 #bindsym $mod+k focus down
@@ -91,10 +97,13 @@ bindsym $mod+Shift+l move up
 bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+#bindsym $mod+Shift+Left move left
+#bindsym $mod+Shift+Down move down
+#bindsym $mod+Shift+Up move up
+#bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+Right move workspace to output right
+bindsym $mod+Shift+Left move workspace to output left
 
 # split in horizontal orientation
 bindsym $mod+h split h
@@ -168,7 +177,7 @@ bindsym $mod+Shift+r restart
 #bindsym $mod+Shift+b exec i3lock
 # Screenshot
 #bindsym Print exec xfce4-screenshooter
-bindsym $mod+Shift+p exec "scrot '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures'"
+#bindsym $mod+Shift+p exec "scrot '%Y-%m-%d_$wx$h_scrot.png' -e 'mv $f ~/Pictures'"
 
 
 # Power management
